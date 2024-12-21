@@ -1,0 +1,12 @@
+﻿Tingkat;Kesehatan (Biru);Terbakar (Merah)
+0;Tidak menimbulkan bahaya kesehatan, tidak ada tindakan pencegahan yang diperlukan (misalnya, lanolin);Tidak akan terbakar (misalnya, air)
+1;Paparan hanya menyebabkan iritasi dengan luka residual kecil (misalnya, aseton);Harus dipanaskan sebelum pembakaran terjadi (misalnya, minyak kedelai). Titik nyala di atas 93 °C (200 °F)
+2;Paparan besar atau terus menerus tapi tidak kronis dapat mengakibatkan cacat sementara atau kemungkinan luka residual (misalnya, dietil eter);Harus dipanaskan secara sedang atau dipaparkan ke suhu sekitar yang lebih tinggi sebelum pembakaran bisa terjadi (misalnya, diesel). Titik nyala 38 °C (100 °F) dan 93 °C (200 °F)
+3;Sedikit paparan dapat mengakibatkan luka sementara atau luka residual sedang yang serius (misalnya, gas klorin);Cairan dan zat padat yang dapat terbakar pada hampir semua kondisi suhu sekitar (misalnya, bensin). Cairan memiliki titik nyala dibawah 23 °C (73 °F) dan memiliki titik didih pada dan di atas 38 °C (100 °F) atau titik nyala 23 °C (73 °F) dan 38 °C (100 °F)
+4;Sangat sedikit paparan dapat mengakibatkan kematian atau luka residual parah (misalnya, hidrogen sianida, fosfin);Dengan cepat atau sepenuhnya menguap pada suhu dan tekanan atmosfer normal, atau segara tersebar di udara dan akan mudah terbakar (misalnya, propana). Titik nyala dibawah 23 °C (73 °F)
+;Reaktivitas (Kuning);Khusus (Putih)
+0;Stabil, bahkan apabila terpapar dengan api, dan tidak bereaksi dengan air (misalnya, helium);OX - Oksidan (misalnya, kalium perklorat, amonium nitrat, hidrogen peroksida)
+1;Stabil, namun dapat tidak stabil pada tekanan dan suhu tinggi (misalnya, propana);W - Bereaksi dengan air dengan cara yang tidak biasa atau berbahaya (misalnya cesium, sodium, asam sulfat)
+2;Mengalami perubahan kimia yang besar pada tekanan dan suhu tinggi, bereaksi keras dengan air, atau dapat membentuk campuran eksplosif dengan air (misalnya, fosfor, kalium, sodium);Label putih dapat mengandung beberapa peringatan khusus. Simbol-simbol ini adalah yang digunakan oleh standar NFPA 704
+3;"Dapat terjadi detonasi atau dekomposisi eksplosif namun membutuhkan sumber inisiasi yang kuat, harus dipanaskan di bawah penjagaan sebelum inisiasi, bereaksi eksplosif dengan air, atau akan meledak apabila ""terkejut"" (misalnya, amonium nitrat)";
+4;Dapat terjadi detonasi atau dekomposisi eksplosif pada tekanan udara dan suhu normal (misalnya, nitrogliserin, RDX);

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Identifikasi Label Wadah B3</title>
+    <link rel="shortcut icon" href="favicon-32x32.png" type="image/x-icon">
+    <style>
+        body {
+            font-family: Poppins, Arial;
+            background-color: #f8f8ff;
+            margin: 20px;
+        }
+        .container {
+            border: 2px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            max-width: 900px;
+            background-color: #fff;
+            margin: auto;
+            opacity: 0;
+            animation: slideInUp 1s forwards;
+            animation-delay: 0.5s;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            animation: slideInfromTop 1.5s ease-out;
+        }
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            animation: fadeIn 2s ease-out;
+        }
+        .output {
+            font-size: 14px;
+            opacity: 0;
+            animation: fadeIn 2s ease-out forwards;
+        }
+        .output img {
+            max-width: 200px;
+            display: block;
+            margin: 10px auto;
+        }
+        .symbol {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .symbol img {
+            width: 200px;
+            animation: slideInFromBottom 1.5s ease-out;
+        }
+        .radioactive-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        .radioactive-background .symbol {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: url('radi0active.png') no-repeat center;
+            background-size: contain;
+            opacity: 0.3;
+            animation: floatAndSpin 10s infinite linear;
+        }
+        @keyframes floatAndSpin {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+            }
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes slideInUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        @keyframes slideInFromTop {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        @keyframes slideInFromBottom {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="radioactive-background">
+        <div class="symbol" style="top: 10%; left: 5%;"></div>
+        <div class="symbol" style="top: 20%; left: 25%;"></div>
+        <div class="symbol" style="top: 30%; left: 15%;"></div>
+        <div class="symbol" style="top: 40%; left: 70%;"></div>
+        <div class="symbol" style="top: 50%; left: 50%;"></div>
+        <div class="symbol" style="top: 60%; left: 80%;"></div>
+        <div class="symbol" style="top: 70%; left: 20%;"></div>
+        <div class="symbol" style="top: 80%; left: 60%;"></div>
+        <div class="symbol" style="top: 90%; left: 30%;"></div>
+        <div class="symbol" style="top: 5%; left: 90%;"></div>
+    </div>    
+    <div class="container">
+        <h1>Identifikasi Label Wadah Kemasan B3</h1>
+        <label for="kelas">Pilih Kelas:</label>
+        <select id="kelas" onchange="tampilkanDetail()">
+            <option value="">-- Pilih Kelas --</option>
+            <option value="1">Kelas 1</option>
+            <option value="2.1">Kelas 2.1</option>
+            <option value="2.2">Kelas 2.2</option>
+            <option value="3">Kelas 3</option>
+            <option value="4">Kelas 4</option>
+            <option value="5.1">Kelas 5.1</option>
+            <option value="5.2">Kelas 5.2</option>
+            <option value="6">Kelas 6</option>
+            <option value="7">Kelas 7</option>
+            <option value="8">Kelas 8</option>
+            <option value="9">Kelas 9</option>
+        </select>
+
+        <div class="output" id="output">
+        </div>
+    </div>
+
+    <script>
+        const dataKelas = {
+            "1": {
+                nama: "Explosives",
+                deskripsi: "Bahan peledak adalah suatu bahan atau zat yang berbentuk padat, cair, gas, atau campurannya. Bahan ini memiliki sifat khusus, yaitu ketika dikenai suatu aksi seperti panas, benturan, atau gesekan, akan mengalami reaksi kimia yang sangat cepat. Reaksi ini menghasilkan gas dalam jumlah besar, tekanan yang sangat tinggi, dan panas dalam waktu yang singkat. Semua ini menyebabkan terjadinya ledakan.",
+                contoh: "Dynamite",
+                gambarContoh: "dynamite.jpeg",
+                simbol: "bahan-mudah-meledak.jpg",
+                penanggulangan: `<h4>Yang Harus Dilakukan Jika Menemukan Bahan Mudah Meledak</h4>
+                    <p><strong>1. Lihat dan Kabur. </strong>Kalau kamu melihat simbol atau tulisan "mudah meladak" atau "Explosives", langsung jauhin tempat itu.</p>
+                    <p><strong>2. Jauhkan dari Api. </strong>Sumber api harus dihindari, rokok yang nyala, atau apapun yang panas didekat bahan tersebut. Seperti jauhin bensin dari korek api.</p>
+                    <p><strong>3. Jangan dibanting-banting. </strong>Benda seperti ini sensitif banget, kena benturan dikit aja bisa meledak.</p>
+                    <p><strong>4. Lapor ke yang berwenang. </strong>Kalau ketemu di tempat umum atau tempat kerja, bisa langsung lapor ke satpam, petugas keamanan, atau atasan.</p>
+                    <p>Intinya jangan panik, tapi jangan juga acuh tak acuh. Tetap tenang, jauhi bahayanya, dan lapor ke orang yang tepat, seperti menelpon 112 (nomor darurat).</p>`
+            },
+            "2.1": {
+                nama: "Flammable Gas",
+                deskripsi: "Flammable gas atau gas yang mudah terbakar adalah jenis gas yang sangat mudah menyala jika terkena sumber api atau panas. Gas ini memiliki sifat reaktif tinggi terhadap oksigen sehingga dapat menyebabkan kebakaran atau ledakan jika tidak ditangani dengan benar.",
+                contoh: "Propana",
+                gambarContoh: "propane.jpeg",
+                simbol: "flammable-gas.jpg",
+                penanggulangan: `<h4>Yang Harus Dilakukan Jika Menemukan Gas yang Mudah Terbakar</h4>
+                <p><strong>1. Cium bau gas? Langsung waspada!</strong> Kalau kamu mencium bau gas yang menyengat, itu tanda bahaya. Jangan nyalain api atau listrik apapun, termasuk lampu atau saklar. Bisa memicu ledakan!</p>
+                <p><strong>2. Buka Ventilasi. </strong>Buka jendela dan pintu lebar-lebar untuk membiarkan gas kelauar dan ruangan menjadi lebih ventilasi. Ini penting banget buat mengurangi konsentrasi gas di udara.</p>
+                <p><strong>3. Jangan nyalakan peralatan listrik: </strong>Hindari menyalakan atau mematikan peralatan listrik apapun, termasuk telepon genggam, lampu, atau saklar. Percikan listrik kecil bisa memicu ledakan.</p>
+                <p><strong>4. Matikan sumber gas (jika memungkingkan): </strong>Jika aman dan kamu tahu caranya, coba matikan sumber gas, misalnya katup tabung gas atau keran gas utama. Tapi kalau ragu, mending jangan dipaksakan.</p>
+                <p><strong>5. Evakuasi area: </strong>Jika baunya sangat kuat atau kamu merasa tidak aman, segera evakuasi area dan pastikan semua orang di sekitar juga keluar.</p>
+                <p><strong>6. Hubungi petugas berwenang: </strong>Segera hubungi petugas pemadam kebakaran (112) atau layanan darurat lainnya. Biarkan mereka yang menangani situasi ini dengan profesional.</p>
+                <p>Intinya prioritaskan keselamatan diri dan orang lain. Jangan panik, lakukan langkah-langkah pencegahan yang tepat dan segera hubungi bantuan jika diperlukan.</p>`
+            },
+            "2.2": {
+                nama: "Non-Flammable Compressed Gas",
+                deskripsi: "Non-flammable compressed gas adalah gas yang telah dikompresi dan tidak mudah terbakar. Ini berarti gas tersebut tidak akan menyala atau meledak jika terkena sumber api.",
+                contoh: "Nitrogen",
+                gambarContoh: "nitrogen.jpg",
+                simbol: "non-flammable-gas.jpeg",
+                penanggulangan: `<h4>Hal-Hal yang Perlu diperhatikan</h4>
+                <p><strong>1. Identifikasi gasnya (jika memungkinkan): </strong>Usahakan cari tahu jenis gasnya. Apakah ada label, tanda peringatan, atau informasi lain di sekitar area tersebut? Informasi ini penting untuk menentukan langkah selanjutnya. Contohnya, karbon dioksida (CO2) itu gak mudah terbakar, tapi konsentrasi tinggi bisa bikin sesak napas.</p>
+                <p><strong>2. Perhatikan gejala: </strong>Apakah ada orang di sekitar yang merasakan gejala aneh? Misalnya pusing, mual, sesak napas, atau lemas. Jika ada, segera bantu mereka keluar dari area tersebut.</p>
+                <p><strong>3. Ventilasi area: </strong>Buka jendela dan pintu lebar-lebar untuk memastikan sirkulasi udara yang baik. Tujuannya untuk mengurangi konsentrasi gas di ruangan.</p>
+                <p><strong>4. Hindari sumber api (sebagai pencegahan): </strong>Meskipun gasnya tidak mudah terbakar, tetap bijak untuk menjauhkan sumber api. Beberapa gas bisa bereaksi dengan api atau panas menghasilkan zat lain yang berbahaya.</p>
+                <p><strong>5. Laporkan ke pihak berwenang jika perlu: </strong>Jika situasinya tampak mencurigakan, ada gejala keracunan yang parah, atau kamu tidak yakin dengan tindakan yang harus diambil, segera hubungi petugas berwenang seperti pemadam kebakaran (112) atau pihak keamanan.</p>`
+            },
+            "3": {
+                nama: "Flammable Liquids",
+                deskripsi: "Cairan yang mudah terbakar (flammable liquids) adalah jenis cairan yang memiliki titik nyala yang rendah, artinya cairan ini dapat dengan mudah menguap dan membentuk campuran uap yang mudah terbakar dengan udara pada suhu ruangan. Jika campuran uap ini terpapar sumber api, maka akan terjadi kebakaran.",
+                contoh: "Bensin",
+                gambarContoh: "bensin.jpeg",
+                simbol: "flammable-liquid.jpeg",
+                penanggulangan: `<h4>Yang Perlu Diingat dan Dilakukan</h4>
+                <p><strong>1. Jauhi sumber api dan panas: </strong>Ini nomor satu! Jauhkan cairan mudah terbakar dari segala sesuatu yang bisa menimbulkan api atau panas, seperti korek api, rokok, kompor, lilin, bahkan percikan listrik. Ibaratnya, jangan pernah deketin bensin ke api unggun.</p>
+                <p><strong>2. Jangan merokok di dekatnya: </strong>Ini penting banget. Asap rokok dan puntungnya bisa dengan mudah menyulut uap cairan yang mudah terbakar dan menyebabkan kebakaran.</p>
+                <p><strong>3. Ventilasi yang baik: </strong>Pastikan ruangan tempat cairan itu berada punya ventilasi yang bagus. Buka jendela atau pintu agar udara bisa bersirkulasi dengan baik. Tujuannya untuk mengurangi konsentrasi uap cairan di udara dan mencegah penumpukan yang bisa memicu kebakaran.</p>
+                <p><strong>4. Jangan biarkan tumpah: </strong>Hati-hati saat memindahkan atau menggunakan cairan mudah terbakar. Kalau tumpah, segera bersihkan dengan lap atau kain yang menyerap. Pastikan lap atau kain bekas membersihkan itu dibuang dengan benar di tempat yang aman, jauh dari sumber api.</p>
+                <p><strong>5. Simpan di wadah yang tepat: </strong>Pastikan cairan mudah terbakar disimpan dalam wadah yang tertutup rapat dan terbuat dari bahan yang tidak mudah bereaksi dengan cairan tersebut. Jauhkan dari jangkauan anak-anak. Biasanya, wadah logam atau plastik khusus yang tahan bahan kimia lebih disarankan.</p>
+                <p><strong>6. Baca label dengan seksama: </strong>Pada kemasan cairan mudah terbakar biasanya ada label peringatan dan instruksi penggunaan yang aman. Baca dan ikuti instruksi tersebut dengan cermat.</p>
+                <p><strong>7. Jika terjadi kebakaran kecil: </strong>Jika api masih kecil dan kamu merasa mampu, kamu bisa mencoba memadamkannya dengan Alat Pemadam Api Ringan (APAR) jenis busa atau serbuk kering. Tapi, kalau api sudah membesar, jangan ambil risiko.</p>
+                <p><strong>8. Segera hubungi pemadam kebakaran: </strong>Jika api sudah membesar atau kamu merasa tidak mampu memadamkannya sendiri, segera hubungi pemadam kebakaran (112) atau layanan darurat lainnya. Lebih baik mencegah kerugian yang lebih besar.</p>
+                <p>Intinya kewaspadaan dan tindakan pencegahan adalah kunci utama. Jangan meremehkan potensi bahaya dari ciaran mudah terbakar. Utamakan keselamatan diri sendiri dan orang lain. Lebih baik mencegah daripada menyesal.</p>`
+            },
+            "4": {
+                nama: "Flammable Solid",
+                deskripsi: "Flammable solid atau zat padat mudah terbakar adalah bahan padat yang mudah menyala dan terbakar saat terkena sumber panas atau api. Berbeda dengan zat cair yang mudah menguap dan uapnya yang terbakar, zat padat mudah terbakar menyala pada permukaannya.",
+                contoh: "Sulfur",
+                gambarContoh: "sulfur.jpg",
+                simbol: "flammable-solid.png",
+                penanggulangan: `<h4>Hal-Hal Penting yang Perlu Diperhatikan</h4>
+                <p><strong>1. Jauhkan dari sumber api dan panas: </strong>Ini hukum utama! Jangan deket-deketin padatan yang mudah terbakar ke api, percikan api, rokok yang nyala, setrika, bahkan permukaan yang panas karena gesekan. Ibaratnya, jangan taruh kertas dekat lilin yang menyala.</p>
+                <p><strong>2. Hindari gesekan dan benturan: </strong>Beberapa flammable solid bisa menyala cuma karena gesekan dan benturan yang keras. Jadi, jangan lempar atau banting benda-benda ini.</p>
+                <p><strong>3. Simpan di tempat yang tepat: </strong>Simpan flammable solid di tempat yang kering, sejuk, dan berventilasi baik. Jauhkan dari tempat lembap, panas, atau terkena sinar matahari langsung. Gunakan wadah yang tertutup rapat dan terbuat dari bahan yang tidak bereaksi dengan bahan tersebut.</p>
+                <p><strong>4. Perhatikan kemasan dan label: </strong> Baca baik-baik label dan informasi yang tertera pada kemasan. Biasanya ada petunjuk tentang cara penanganan dan penyimpanan yang aman, serta informasi tentang bahay yang mungkin timbul.</p>
+                <p><strong>5. Jangan campur dengan bahan lain: </strong>Jangan mencampur flammable solid dengan bahan-bahan lain, terutama bahan oksidator (misalnya, pemutih) atau bahan yang mudah bereaksi. Pencampuran yang salah bisa memicu kebakaran atau ledakan.</p>
+                <p><strong>6. Bersihkan tumpahan dengan hati-hati: </strong>Jika terjadi tumpahan, segera bersihkan dengan hati-hati menggunakan peralatan yang tepat. Jangan gunakan vacuum cleaner biasa, karena bisa memicu percikan api.</p>
+                <p><strong>7. Jangan panik, tapi tetap waspada: </strong>Kalau terjadi kebakaran, jangan panik. Coba padamkan api dengan alat pemadam yang sesuai (misalnya, APAR jenis D khusus untuk logam). Kalau api terlalu besar atau kamu merasa tidak mampu, segera hubungi pemadam kebakaran (112) dan evakuasi area.</p>`
+            },
+            "5.1": {
+                nama: "Oxidizing Agents",
+                deskripsi: "Oxidizing Agents atau zat pengoksidasi, zat ini punya kemampuan melepas oksigen dengan mudah, yang artinya bisa mempercepat pembakaran bahkan membuat bahan yang biasanya susah untuk terbakar jadi mudah menyala.",
+                contoh: "Amonium Nitrat",
+                gambarContoh: "ammonium-nitrate.jpg",
+                simbol: "oxidizing-agent.png",
+                penanggulangan: `<h4>Hal-Hal Penting yang Perlu Diperhatikan</h4>
+                <p><strong>1. Jauhkan dari bahan mudah terbakar: </strong>Jangan pernah menyimpan oxidizing agents berdekatan dengan bahan-bahan yang mudah terbakar seperti kertas, kayu, kain, minyak, atau bahan bakar lainnya. Karena. kalau kedua jenis bahan ini bertemu, resiko kebakaran atau bahkan ledakan sangat tinggi.</p>
+                <p><strong>2. Hindari sumber panas dan api: </strong>Oxidizing agents harus dijauhkan dari sumber panas, api, percikan listrik, atau bahkan gesekan yang kuat. Panas bisa memicu pelepasan oksigen secara cepat dan mempercepat reaksi pembakaran.</p>
+                <p><strong>3. Simpan di tempat yang sejuk dan kering: </strong>Simpan oxidizing agents di tempat yang sejuk, kering, dan berventilasi baik. Hindari tempat yang lembap atau terkena sinar matahari langsung. Kelembapan bisa memicu reaksi kimia yang tidak diinginkan.</p>
+                <p><strong>4. Perhatikan label dan MSDS: </strong>Baca dengan seksama label pada kemasan dan cari juga Lembar Data Keselamatan Bahan (MSDS). Dokumen ini berisi informasi penting tentang sifat-sifat bahan, bahaya yang mungkin timbal, cara penanganan yang aman, dan tindakan pertolongan pertama jika terjadi kecelakaan.</p>
+                <p><strong>5. Jangan mencampur dengan bahan kimia lain: </strong>Jangan pernah mencampur oxidizing agents dengan bahan kimia lain, terutama bahan pereduksi, asam, atau basa. Pencampuran yang salah bisa menghasilkan reaksi kimia yang hebat, bahkan ledakan.</p>
+                <p><strong>6. Gunakan wadah yang sesuai: </strong>Gunakan wadah yang bersih, kering, dan terbuat dari bahan yang kompatibel dengan oxidizing agents tersebut. Wadah harus tertutup rapat untuk mencegah kontaminasi dan kebocoran.</p>
+                <p>Intinya penanganan oxidizing agents membutuhkan kehati-hatian dan pengetahuan yang memadai. Selalu ikuti petunjuk keselamatan yang tertera pada label dan MSDS. Utamakan keselamatan diri sendiri dan orang lain. Jika ragu, konsultasikan dengan ahli atau petugas yang berwenang.</p>`
+            },
+            "5.2": {
+                nama: "Organic Peroxides",
+                deskripsi: "Organic Peroxides adalah senyawa organik yang mengandung gugus peroksida (-O-O-) dalam strukturnya. Mereka sangat reaktif dan dapat terurai dengan mudah, melepaskan energi dalam bentuk panas atau ledakan. Senyawa ini sangat sensitif terhadap panas, gesakan, atau benturan dan biasanya digunakan sebagai katalis, inisiator polimerisasi, atau pemutih.",
+                contoh: "Benzoyl Peroxide",
+                gambarContoh: "benzoyl.jpeg",
+                simbol: "organic-peroxide.png",
+                penanggulangan: `<h4>Hal-Hal Penting yang Perlu Diperhatikan</h4>
+                <p><strong>1. Jauhkan dari panas dan api: </strong>Ini penting banget! Organic peroxides sangat sensitif terhadap panas dan bisa terurai dengan cepat, bahkan bisa memicu kebakaran atau ledakan. Jauhkan dari sumber panas seperti api, kompor, matahari langsung, atau bahkan gesekan yang kuat.</p>
+                <p><strong>2. Hindari benturan dan gesekan: </strong>Jangan membanting, menjatuhkan, atau menggesek-gesek wadah berisi organic peroxides. Benturan atau gesekan bisa memicu dekomposisi yang menghasilkan panas dan bahkan ledakan.</p>
+                <p><strong>3. Simpan di tempat yang sejuk dan gelap: </strong>Idealnya, simpan organic peroxides di tempat yang sejuk dan gelap, sesuai dengan petunjuk penyimpanan yang tertera pada kemasan. Hindari tempat yang lembap atau terkena sinar matahari langsung. Suhu yang tinggi bisa mempercepat dekomposisi.</p>
+                <p><strong>4. Perhatikan label dan MSDS: </strong>Baca dengan seksama label pada kemasan dan cari juga Lembar Data Keselamatan Bahan (MSDS). Dokumen ini berisi informasi penting tentang sifat-sifat bahan, bahaya yang mungkin timbal, cara penanganan yang aman, dan tindakan pertolongan pertama jika terjadi kecelakaan.</p>
+                <p><strong>5. Jangan mencampur dengan bahan kimia lain: </strong>Jangan pernah mencampur organic peroxides dengan bahan kimia lain, terutama bahan pereduksi, asam, basa, atau logam berat. Pencampuran yang salah bisa memicu reaksi yang sangat berbahaya.</p>
+                <p><strong>6. Gunakan sesuai petunjuk: </strong>Jika kamu menggunakan produk yang mengandung organic peroxides, seperti obat jerawat, ikuti petunjuk penggunaan dengan benar. Jangan gunakan berlebihan atau mencampurnya dengan produk lain tanpa petunjuk dokter.</p>
+                <p>Intinya meskipun beberapa organic peroxides digunakan dalam produk sehari-hari, kita tetap harus berhati-hati. Penanganan dan penyimpanan yang tepat sangat penting untuk mencegah kecelakaan. Selalu ikuti petunjuk keselamatan dan jangan ragu untuk berkonsultasi dengan ahli jika ada pertanyaan.</p>`
+            },
+            "6": {
+                nama: "Bahan Beracun",
+                deskripsi: "Bahan beracun adalah zat yang dapat menyebabkan kerusakan pada organisme hidup jika terpapar dalam jumlah tertentu. Kerusakan ini bisa berupa gangguan kesehatan ringan, penyakit kronis, bahkan kematian.",
+                contoh: "Dimethyl Sulphate",
+                gambarContoh: "dimethyl.jpg",
+                simbol: "toxic.png",
+                penanggulangan: `<h4>Hal-Hal Penting yang Perlu Diperhatikan</h4>
+                <p><strong>1. Kenali dulu jenis racunnya: </strong>Setiap racun punya sifat dan cara penanganan yang berbeda. Misalnya, ada yang beracun kalau terhirup, tertelan, atau kena kulit. Kalau kita tahu jenisnya, kita bisa lebih tepat dalam bertindak. Biasanya, informasi ini ada di label kemasan atau Lembar Data Keselamatan Bahan (MSDS).</p>
+                <p><strong>2. Baca label dan MSDS dengan teliti: </strong>Sebelum menggunakan atau menangani bahan kimia apapun, selalu baca label dan MSDS-nya. Di situ ada informasi penting tentang bahaya, cara penggunaan yang aman, pertolongan pertama jika terjadi kecelakaan, dan cara pembuangan yang benar.</p>
+                <p><strong>3. Perhatikan label dan MSDS: </strong>Baca dengan seksama label pada kemasan dan cari juga Lembar Data Keselamatan Bahan (MSDS). Dokumen ini berisi informasi penting tentang sifat-sifat bahan, bahaya yang mungkin timbal, cara penanganan yang aman, dan tindakan pertolongan pertama jika terjadi kecelakaan.</p>
+                <p><strong>4. Gunakan alat pelindung diri (APD): </strong>Kalau harus berurusan dengan bahan beracun, wajib hukumnya pakai APD yang sesuai. Misalnya, sarung tangan, masker, kacamata pelindung, dan pakaian pelindung. APD ini berfungsi sebagai penghalang agar racun tidak langsung mengenai tubuh kita.</p>
+                <p><strong>5. Jika terjadi kecelakaan, segera cari pertolongan medis: </strong>Jika kamu atau orang di sekitarmu mengalami gejala keracunan, seperti pusing, mual, muntah, sesak napas, atau iritasi kulit, segera hubungi dokter atau layanan darurat. Jangan mencoba mengobati sendiri tanpa petunjuk medis.</p>`
+            },
+            "7": {
+                nama: "Radioactive Materials",
+                deskripsi: "Bahan radioaktif adalah bahan kimia yang mempunyai kemampuan memancarkan sinar radioaktif dengan aktivitas jenis lebih besar dari 0.002 microcurie/gram",
+                contoh: "Uranium",
+                gambarContoh: "uranium.jpeg",
+                simbol: "radioactive.jpeg",
+                penanggulangan: `<h4>Hal-Hal Penting yang Perlu Diperhatikan</h4>
+                <p><strong>1. Kenali dulu situasinya: </strong>Apakah ini situasi normal (misalnya, di rumah sakit yang menggunakan peralatan radiologi) atau situasi darurat (misalnya, kebocoran reaktor nuklir)? Tindakannya akan berbeda tergantung situasinya.</p>
+                <p><strong>2. Jauhi sumber radiasi: </strong>Semakin jauh kita dari sumber radiasi, semakin kecil dosis radiasi yang kita terima. Usahakan untuk menjauh sejauh mungkin dari area yang diduga terpapar radiasi.</p>
+                <p><strong>3. Batasi waktu paparan: </strong>Jika kita tidak bisa menjauhi sumber radiasi sepenuhnya, usahakan untuk membatasi waktu paparan sebisa mungkin. Semakin singkat waktu paparan, semakin kecil dosis radiasi yang kita terima.</p>
+                <p><strong>4. Gunakan perisai: </strong>Jika memungkinkan, gunakan perisai untuk melindungi diri dari radiasi. Perisai bisa berupa benda padat seperti tembok beton, timbal, atau air.</p>
+                <p><strong>5. Ikuti instruksi dari pihak berwenang: </strong>Dalam situasi darurat, ikuti instruksi dari pihak berwenang seperti Badan Tenaga Nuklir Nasional (BATAN), Badan Pengawas Tenaga Nuklir (BAPETEN), atau Badan Penanggulangan Bencana Daerah (BPBD). Mereka akan memberikan informasi dan arahan yang tepat mengenai tindakan yang harus diambil.</p>`
+            },
+            "8": {
+                nama: "Corrosive Substances",
+                deskripsi: "Corrosive substances atau dalam bahasa Indonesia bahan korosif adalah bahan kimia yang dapat mengakibatkan kerusakan apabila kontak dengan jaringan hidup atau bahan lainnya.",
+                contoh: "Asam Asetat",
+                gambarContoh: "acetic-acid.webp",
+                simbol: "corrosive.jpg",
+                penanggulangan: `<h4>Hal-Hal Penting yang Perlu Diperhatikan</h4>
+                <p><strong>1. Kenali dulu jenis zat korosifnya: </strong>Ada zat korosif yang berupa asam (misalnya asam sulfat, asam klorida), dan ada yang berupa basa (misalnya natrium hidroksida, kalium hidroksida). Setiap jenis punya cara penanganan yang berbeda. Biasanya, informasi ini tertera di label kemasan atau Lembar Data Keselamatan Bahan (MSDS).</p>
+                <p><strong>2. Hindari kontak langsung: </strong>Usahakan jangan sampai zat korosif mengenai kulit, mata, atau pakaian. Jika terpaksa, gunakan APD yang memadai dan berhati-hatilah.</p>
+                <p><strong>3. Tahu cara penanganan jika terjadi tumpahan: </strong>Jika terjadi tumpahan, segera bersihkan dengan hati-hati menggunakan bahan penyerap yang tepat, misalnya pasir, vermikulit, atau bahan penyerap khusus untuk bahan kimia. Jangan gunakan air untuk membersihkan tumpahan asam sulfat, karena bisa menghasilkan panas yang hebat.</p>
+                <p><strong>4. Jika terkena kulit atau mata, segera bilas dengan air mengalir: </strong>Jika zat korosif mengenai kulit atau mata, segera bilas dengan air mengalir selama minimal 15 menit. Lepaskan pakaian atau perhiasan yang terkena zat tersebut. Setelah dibilas, segera cari pertolongan medis.</p>
+                <p><strong>5. Jangan membuang zat korosif sembarangan: </strong>Buang zat korosif sesuai dengan peraturan yang berlaku. Jangan membuangnya ke saluran pembuangan air atau tempat sampah biasa.</p>
+                <p>Intinya zat korosif memang berbahaya, tapi dengan pengetahuan dan tindakan pencegahan yang tepat, kita bisa menggunakannya dengan aman. Ingat, selalu utamakan keselamatan diri sendiri dan orang lain. Jika ragu, konsultasikan dengan ahli atau petugas yang berwenang.`
+            },
+            "9": {
+                nama: "Miscellaneous",
+                deskripsi: "Istilah miscellaneous dalam konteks bahan kimia, atau lebih tepatnya dalam konteks barang berbahaya dalam penanganan bahan, mengacu pada kategori yang menampung bahan atau zat yang memiliki sifat berbahaya tetapi tidak cocok dengan klasifikasi bahaya utama lainnya.",
+                contoh: "Polutan Air",
+                gambarContoh: "marine.jpg",
+                simbol: "miscell.webp",
+                penanggulangan: `<h4>Hal-Hal yang Perlu Diperhatikan</h4>
+                <p><strong>1. Identifikasi bahan kimia: </strong>Ini langkah pertama dan terpenting. Kita harus tahu persis bahan kimia apa yang ada di sekitar kita. Baca label kemasan dengan seksama. Jika tidak ada label atau labelnya rusak, jangan pernah coba-coba menebak. Lebih baik minta bantuan ahli atau petugas yang berwenang.</p>
+                <p><strong>2. Cari informasi MSDS: </strong>Material Safety Data Sheet (MSDS) atau Lembar Data Keselamatan Bahan adalah dokumen yang berisi informasi lengkap tentang suatu bahan kimia, termasuk bahaya, cara penanganan, penyimpanan, pertolongan pertama jika terjadi kecelakaan, dan cara pembuangan. Cari MSDS untuk bahan kimia tersebut di internet (biasanya bisa dicari dengan nama bahan kimia + "MSDS") atau minta dari produsen/distributor.</p>
+                <p><strong>3. Gunakan akal sehat: </strong>Jika kita tidak yakin tentang suatu bahan kimia, lebih baik jangan disentuh. Hindari melakukan hal-hal yang berisiko, seperti mencampur bahan kimia sembarangan atau menyimpan bahan kimia di tempat yang tidak tepat.</p>
+                <p>Intinya menangani bahan kimia "miscellaneous" membutuhkan kehati-hatian dan informasi yang tepat. Identifikasi bahan kimia, cari MSDS, gunakan akal sehat, dan ikuti petunjuk keselamatan. Jika ragu, jangan pernah ragu untuk bertanya kepada ahli atau petugas yang berwenang. Lebih baik mencegah daripada mengobati.</p>`
+            }
+        };
+
+        function tampilkanDetail() {
+            const kelas = document.getElementById("kelas").value;
+            const output = document.getElementById("output");
+            if (kelas && dataKelas[kelas]) {
+                const data = dataKelas[kelas];
+                output.innerHTML = `
+                    <h3>Kelas ${kelas} - ${data.nama}</h3>
+                    <p><strong>Deskripsi:</strong> ${data.deskripsi}</p>
+                    <p><strong>Contoh:</strong> ${data.contoh}</p>
+                    <img src="${data.gambarContoh}" alt="Contoh"/>
+                    <div class="symbol">
+                        <p><strong>Simbol:</strong></p>
+                        <img src="${data.simbol}" alt="Simbol"/>
+                    </div>
+                    ${data.penanggulangan}
+                `;
+                output.style.animation = 'fadeIn 2s ease-out forwards';
+            } else {
+                output.innerHTML = "";
+            }
+        }
+    </script>
+</body>
+</html>
